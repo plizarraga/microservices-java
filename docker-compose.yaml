@@ -1,0 +1,45 @@
+version: '3'
+services:
+  ### Posgres database for Inventory
+  db-inventory:
+    container_name: db-inventory
+    image: postgres:15.3
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ms_inventory
+      POSTGRES_USER: db_user_demo
+      POSTGRES_PASSWORD: dlpY&2z%0wm#uG%s
+    ports:
+      - 5431:5431
+    expose:
+      - 5431
+    command: -p 5431
+
+  ### Posgres database for Orders
+  db-orders:
+    container_name: db-orders
+    image: postgres:15.3
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ms_orders
+      POSTGRES_USER: db_user_demo
+      POSTGRES_PASSWORD: dlpY&2z%0wm#uG%s
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+
+  ### Posgres database for Products
+  db-products:
+    container_name: db-products
+    image: postgres:15.3
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ms_products
+      POSTGRES_USER: db_user_demo
+      POSTGRES_PASSWORD: dlpY&2z%0wm#uG%s
+    ports:
+      - 5433:5433
+    expose:
+      - 5433
+    command: -p 5433
