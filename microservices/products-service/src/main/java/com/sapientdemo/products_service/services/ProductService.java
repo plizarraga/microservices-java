@@ -36,11 +36,31 @@ public class ProductService {
         var existingProduct = productRepository.findById(id).orElse(null);
 
         if (existingProduct != null) {
-            existingProduct.setSku(productRequest.getSku());
-            existingProduct.setName(productRequest.getName());
-            existingProduct.setDescription(productRequest.getDescription());
-            existingProduct.setPrice(productRequest.getPrice());
-            existingProduct.setStatus(productRequest.getStatus());
+
+            // Update SKU if present in the request
+            if (productRequest.getSku() != null) {
+                existingProduct.setSku(productRequest.getSku());
+            }
+
+            // Update name if present in the request
+            if (productRequest.getName() != null) {
+                existingProduct.setName(productRequest.getName());
+            }
+
+            // Update description if present in the request
+            if (productRequest.getDescription() != null) {
+                existingProduct.setDescription(productRequest.getDescription());
+            }
+
+            // Update price if present in the request
+            if (productRequest.getPrice() != null) {
+                existingProduct.setPrice(productRequest.getPrice());
+            }
+
+            // Update status if present in the request
+            if (productRequest.getStatus() != null) {
+                existingProduct.setStatus(productRequest.getStatus());
+            }
 
             productRepository.save(existingProduct);
 
