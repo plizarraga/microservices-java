@@ -32,10 +32,46 @@ public class ProductService {
         log.info("Product added: {}", product);
     }
 
+    public boolean updateProduct(Long id, ProductRequest productRequest) {
+        var existingProduct = productRepository.findById(id).orElse(null);
+
+        if (existingProduct != null) {
+            existingProduct.setSku(productRequest.getSku());
+            existingProduct.setName(productRequest.getName());
+            existingProduct.setDescription(productRequest.getDescription());
+            existingProduct.setPrice(productRequest.getPrice());
+            existingProduct.setStatus(productRequest.getStatus());
+
+            productRepository.save(existingProduct);
+
+            log.info("Product updated: {}", existingProduct);
+            return true;
+        }
+
+        return false;
+    }
+
     public List<ProductResponse> getAllProducts() {
         var products = productRepository.findAll();
-        
+
         return products.stream().map(this::mapToProductResponse).toList();
+    }
+
+    public ProductResponse getProductById(Long id) {
+        var product = productRepository.findById(id).orElse(null);
+        return product != null ? mapToProductResponse(product) : null;
+    }
+
+    public boolean deleteProduct(Long id) {
+        var product = productRepository.findById(id).orElse(null);
+
+        if (product != null) {
+            productRepository.delete(product);
+            log.info("Product deleted: {}", product);
+            return true;
+        }
+
+        return false;
     }
 
     private ProductResponse mapToProductResponse(Product product) {
