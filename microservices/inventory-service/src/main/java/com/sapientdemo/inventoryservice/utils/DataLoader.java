@@ -20,15 +20,22 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("Loading data...");
+        log.info("Loading inventory data...");
         if (inventoryRepository.findAll().size() == 0) {
             inventoryRepository.saveAll(
                     List.of(
-                            Inventory.builder().sku("000001").quantity(10L).build(),
-                            Inventory.builder().sku("000002").quantity(20L).build(),
-                            Inventory.builder().sku("000003").quantity(30L).build(),
-                            Inventory.builder().sku("000004").quantity(0L).build()));
+                            Inventory.builder().sku("LAPTOP-001").quantity(10L).build(),
+                            Inventory.builder().sku("LAPTOP-002").quantity(20L).build(),
+                            Inventory.builder().sku("PHONE-001").quantity(30L).build(),
+                            Inventory.builder().sku("PHONE-002").quantity(15L).build(),
+                            Inventory.builder().sku("COMPUTER-001").quantity(0L).build(),
+                            Inventory.builder().sku("COMPUTER-002").quantity(10L).build(),
+                            Inventory.builder().sku("MONITOR-001").quantity(20L).build(),
+                            Inventory.builder().sku("MONITOR-002").quantity(30L).build(),
+                            Inventory.builder().sku("CAMERA-001").quantity(15L).build(),
+                            Inventory.builder().sku("CAMERA-002").quantity(0L).build()));
+
         }
-        log.info("Data loaded.");
+        log.info("Inventory data loaded.");
     }
 }
