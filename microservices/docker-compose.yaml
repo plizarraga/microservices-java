@@ -1,0 +1,49 @@
+version: '3'
+services:
+  db-microservices:
+    container_name: db-microservices
+    image: postgres:15.3
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: db_microservices
+      POSTGRES_USER: db_user_demo
+      POSTGRES_PASSWORD: dlpY&2z%0wm#uG%s
+    ports:
+      - 5431:5431
+    expose:
+      - 5431
+    command: -p 5431
+  # discovery-server:
+  #   container_name: discovery-server
+  #   build:
+  #     context: ./discovery-server
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8761:8761
+  # api-gateway:
+  #   container_name: api-gateway
+  #   build:
+  #     context: ./api-gateway
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8080:8080
+  #   depends_on:
+  #     - discovery-server
+  # ms-products-service:
+  #   container_name: ms-products-service
+  #   build:
+  #     context: ./products-service
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8081:8081
+  #   environment:
+  #     - DATABASE_URL=jdbc:postgresql://db-microservices:5431/db_microservices
+  #     - DATABASE_USERNAME=db_user_demo
+  #     - DATABASE_PASSWORD=dlpY&2z%0wm#uG%s
+  #   depends_on:
+  #     - db-microservices
+  #     - discovery-server
+  #     - api-gateway
+# networks:
+#   app-network:
+#     driver: bridge

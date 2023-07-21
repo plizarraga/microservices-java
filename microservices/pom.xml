@@ -24,8 +24,8 @@
 	<modules>
         <module>discovery-server</module>
         <module>api-gateway</module>
-        <module>orders-service</module>
         <module>products-service</module>
+		<module>contacts-service</module>
     </modules>
 
 	<dependencies>
