@@ -24,7 +24,6 @@
 	<modules>
         <module>discovery-server</module>
         <module>api-gateway</module>
-        <module>inventory-service</module>
         <module>orders-service</module>
         <module>products-service</module>
     </modules>
