@@ -1,5 +1,9 @@
 FROM amazoncorretto:17-alpine
+
 COPY target/contacts-service-0.0.1-SNAPSHOT.jar contacts-service.jar
+
+EXPOSE 8082
+
 ENTRYPOINT [ "java", "-jar", "contacts-service.jar" ]
 
 # FROM maven:3.9.3-eclipse-temurin-11-focal AS build 
